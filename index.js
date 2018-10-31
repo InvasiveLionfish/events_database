@@ -1,11 +1,25 @@
 require('dotenv').load();
-var express = require('express');
-var async = require('async');
-var router = express.Router();
-var meetup = require('meetup-api')({
+
+const express = require('express');
+// var async = require('async');
+// var router = express.Router();
+const request = require('request');
+const app = express();
+const meetup = require('meetup-api')({
 	key: process.env.MEETUP_API
 });
 
+const port = 3000
+
+app.listen(port, () => {
+  console.log(`Your app is listening on port ${port}`);
+});
+
+// app.use(express.static("public"));
+
+app.get('/', (req, res) => res.send('Events Database'))
+
+// console.log('Server running!');
 // router.get('/', indexRoute);
 
 // module.exports = router;
@@ -30,11 +44,9 @@ var meetup = require('meetup-api')({
 // 	res.render('index', { group: results.group, events: results.events.results });
 // }
 
-const request = require('request');
 
 request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=25&order=members`, { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
 	console.log(process.env.MEETUP_API);
   console.log(body);
-  console.log(body.explanation);
 });
