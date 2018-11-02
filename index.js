@@ -5,9 +5,9 @@ const express = require('express');
 // var router = express.Router();
 const request = require('request');
 const app = express();
-const meetup = require('meetup-api')({
-	key: process.env.MEETUP_API
-});
+// const meetup = require('meetup-api')({
+// 	key: process.env.MEETUP_API
+// });
 
 const port = 8080
 
@@ -15,9 +15,9 @@ app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
-// app.get('/', (req, res) => res.send('Events Database'))
+app.get('/', (req, res) => res.send(getEvents))
 
 // app.get('/', (req, res) => res.send(
 // 	request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
@@ -53,8 +53,13 @@ app.use(express.static("public"));
 // }
 
 
-request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
+const getEvents = request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
-	console.log(process.env.MEETUP_API);
+	// console.log(process.env.MEETUP_API);
+	const meetupName = body[0].name;
+	const meetupLink = body[0].link;
+	const meetupCity = body[0].city;
+	const meetupOrganizer = body[0].organizer.name;
   console.log(body);
+	return `Check out ${meetupName} here: ${meetupLink}. This event is in ${meetupCity} and is organized by ${meetupOrganizer}`;
 });
