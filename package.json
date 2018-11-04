@@ -5,9 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^6.1.0",
-    "async": "^2.6.1",
     "express": "^4.16.4",
-    "meetup-api": "^1.4.33",
     "request": "^2.88.0"
   },
   "devDependencies": {
