@@ -19,7 +19,29 @@ app.use(express.static("public"));
 app.set('views', './public')
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res) => res.send(getEvents))
+
+app.get('/', (req, response) => {
+  const title = 'This is a title';
+
+  let url = `https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`;
+
+  request.get({
+    url: url,
+    json: true
+  }, (err, res, body) => {
+    if (err) {
+      response.render('index', {
+        //TODO: Add error page
+        error: err
+        })
+    } else {
+      response.render('index', {
+        title,
+        name: body[0].name
+      })
+    }
+   })
+})
 
 // app.get('/', (req, res) => res.send(
 // 	request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
@@ -54,14 +76,14 @@ app.get('/', (req, res) => res.send(getEvents))
 // 	res.render('index', { group: results.group, events: results.events.results });
 // }
 
-
-const getEvents = request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
-	// console.log(process.env.MEETUP_API);
-	const meetupName = body[0].name;
-	const meetupLink = body[0].link;
-	const meetupCity = body[0].city;
-	const meetupOrganizer = body[0].organizer.name;
-  console.log(body);
-	return `Check out ${meetupName} here: ${meetupLink}. This event is in ${meetupCity} and is organized by ${meetupOrganizer}`;
-});
+// const getEvents = request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
+//   if (err) { return console.log(err); }
+//   const newObject = {
+//     meetupName : body[0].name,
+//     meetupLink : body[0].link,
+//     meetupCity : body[0].city,
+//     meetupOrganizer : body[0].organizer.name
+//   }
+//   // console.log('NEW OBJECT', newObject);
+// 	return newObject;
+// });
