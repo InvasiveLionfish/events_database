@@ -11,6 +11,7 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "ejs": "^2.6.1",
     "nodemon": "^1.18.5"
   },
   "scripts": {
