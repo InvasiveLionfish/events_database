@@ -15,7 +15,9 @@ app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
 
-// app.use(express.static("public"));
+app.use(express.static("public"));
+app.set('views', './public')
+app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => res.send(getEvents))
 
