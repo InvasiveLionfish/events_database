@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 
 
 app.get('/', (req, response) => {
-  const title = 'This is a title';
+  const title = 'Technical Events Database for Local Cities';
 
   let url = `https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`;
 
@@ -32,7 +32,10 @@ app.get('/', (req, response) => {
     } else {
       response.render('index', {
         title,
-        name: body[0].name
+        name: body[0].name,
+        link: body[0].link,
+        city: body[0].city,
+        organizer: body[0].organizer.name
       })
     }
    })
