@@ -2,10 +2,44 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Technical Events Database for Local Cities</title>
+    <title>Events Database</title>
   </head>
   <body>
-    <p><%= title %> </p>
-    <p> <%= name %></p>
+    <h1><%= title %> </h1>
+    <span>Please select a city: </span>
+    <select>
+      <option value="Atlanta">Atlanta</option>
+      <option value="Denver">Denver</option>
+      <option value="Phoenix">Phoenix</option>
+      <option value="LosAngeles">Los Angeles</option>
+    </select>
+    <br>
+    <span>Please select a topic: </span>
+    <select>
+      <option value="WebDevelopment">Web Development</option>
+      <option value="DataScience">Data Science</option>
+      <option value="Networking">Networking</option>
+      <option value="Technology">Technology</option>
+    </select>
+
+    <h5> Here are the most popular meetups with that criteria: </h5>
+
+    <table>
+      <tr>
+        <th>Meetup Name</th><th>Link</th><th>City</th><th>Organizer</th><th>Attended</th><th>Notes</th>
+      </tr>
+      <tr>
+        <td><%= name %></td>
+        <td><%= link %></td>
+        <td><%= city %></td>
+        <td><%= organizer %></td>
+        <td><input type="checkbox" name="attended" value="attended"></td>
+        <td><textarea rows="2" cols="30"></textarea></td>
+      </tr>
+    </table>
+    <!-- <p> <%= name %></p>
+    <p> <%= link %></p>
+    <p> <%= city %></p>
+    <p> <%= organizer %></p> -->
   </body>
 </html>
