@@ -28,18 +28,16 @@
       <tr>
         <th>Meetup Name</th><th>Link</th><th>City</th><th>Organizer</th><th>Attended</th><th>Notes</th>
       </tr>
-      <tr>
-        <td><%= name %></td>
-        <td><%= link %></td>
-        <td><%= city %></td>
-        <td><%= organizer %></td>
-        <td><input type="checkbox" name="attended" value="attended"></td>
-        <td><textarea rows="2" cols="30"></textarea></td>
-      </tr>
+      <% for(var i=0; i < body.length; i++) { %>
+         <tr>
+           <td><%= body[i].name %></td>
+           <td><%= body[i].link %></td>
+           <td><%= body[i].city %></td>
+           <td><%= body[i].organizer.name %></td>
+           <td><input type="checkbox" name="attended" value="attended"></td>
+           <td><textarea rows="2" cols="30"></textarea></td>
+         </tr>
+      <% } %>
     </table>
-    <!-- <p> <%= name %></p>
-    <p> <%= link %></p>
-    <p> <%= city %></p>
-    <p> <%= organizer %></p> -->
   </body>
 </html>

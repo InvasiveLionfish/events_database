@@ -1,9 +1,8 @@
 require('dotenv').load();
-
 const express = require('express');
 const request = require('request');
-const app = express();
 
+const app = express();
 const port = 8080
 
 app.listen(port, () => {
@@ -13,7 +12,6 @@ app.listen(port, () => {
 app.use(express.static("public"));
 app.set('views', './public')
 app.set('view engine', 'ejs')
-
 
 app.get('/', (req, response) => {
   const title = 'Technical Events Database for Local Cities';
@@ -32,10 +30,7 @@ app.get('/', (req, response) => {
     } else {
       response.render('index', {
         title,
-        name: body[0].name,
-        link: body[0].link,
-        city: body[0].city,
-        organizer: body[0].organizer.name
+        body
       })
     }
    })
