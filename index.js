@@ -42,15 +42,3 @@ app.get('/', (req, response) => {
     }
    })
 })
-
-// const getEvents = request(`https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&zip=11211&radius=1&category=34&order=members`, { json: true }, (err, res, body) => {
-//   if (err) { return console.log(err); }
-//   const newObject = {
-//     meetupName : body[0].name,
-//     meetupLink : body[0].link,
-//     meetupCity : body[0].city,
-//     meetupOrganizer : body[0].organizer.name
-//   }
-//   // console.log('NEW OBJECT', newObject);
-// 	return newObject;
-// });
