@@ -7,8 +7,19 @@
   <body>
     <h1><%= title %> </h1>
 
-    <h5> Here are the most popular meetups with that criteria: </h5>
+    <form id="tableForm" onsubmit="formSubmitted()">
+      <span>Please select a city: </span>
+        <select id="citySelect" name="city">
+          <option value="Atlanta">Atlanta</option>
+          <option value="Denver">Denver</option>
+          <option value="Phoenix">Phoenix</option>
+          <option value="Los+Angeles">Los Angeles</option>
+        </select>
+        <br>
+      <input type="submit" />
+    </form>
 
+    <h5> Here are the most popular meetups with that criteria: </h5>
     <table>
       <tr>
         <th>Meetup Name</th><th>Link</th><th>City</th><th>Organizer</th><th>Attended</th><th>Notes</th>
