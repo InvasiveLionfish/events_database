@@ -14,6 +14,13 @@ app.set('views', './public')
 app.set('view engine', 'ejs')
 
 app.get('/', (req, response) => {
+  if (!req.query.city) {
+  const title = 'Select a city';
+  return response.render('index', {
+      title,
+      body: []
+    })
+  }
   const title = 'Technical Events Database for Local Cities';
 
   let url = `https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&city=Phoenix&radius=1&category=34&order=members`;
