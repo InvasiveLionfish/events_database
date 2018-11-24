@@ -23,13 +23,7 @@ app.get('/', (req, response) => {
   }
   const title = 'Technical Events Database for Local Cities';
 
-  let url = `https://api.meetup.com/find/groups?` + `key=${process.env.MEETUP_API}` + `&city=Phoenix&radius=1&category=34&order=members`;
-
-  // let meetupParams = {
-  //   key: process.env.MEETUP_API_KEY,
-  //   city: 'Phoenix',
-  //   category_id: 34,
-  // };
+  let url = `https://api.meetup.com/find/groups?key=${process.env.MEETUP_API}&location=${req.query.city}&radius=1&category=34&order=members`;
 
   request.get({
     url: url,
